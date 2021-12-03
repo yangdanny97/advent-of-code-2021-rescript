@@ -1,34 +1,30 @@
 open Belt
 
-type direction = 
-    | Up 
-    | Down 
-    | Forward
+type direction =
+  | Up
+  | Down
+  | Forward
 
 let part1 = inputs => {
-    let (x, y) = List.reduce(inputs, (0, 0), 
-        ((x, y), (dir, amt)) => {
-            switch (dir) {
-                |Up => (x, y - amt)
-                |Down => (x, y + amt)
-                |Forward => (x + amt, y)
-            }
-        }
-    )
-    Js.log("Part 1: " ++ Int.toString(x * y))
+  let (x, y) = List.reduce(inputs, (0, 0), ((x, y), (dir, amt)) => {
+    switch dir {
+    | Up => (x, y - amt)
+    | Down => (x, y + amt)
+    | Forward => (x + amt, y)
+    }
+  })
+  Js.log("Part 1: " ++ Int.toString(x * y))
 }
 
 let part2 = inputs => {
-    let (x, y, _) = List.reduce(inputs, (0, 0, 0), 
-        ((x, y, aim), (dir, amt)) => {
-            switch (dir) {
-                |Up => (x, y, aim - amt)
-                |Down => (x, y, aim + amt)
-                |Forward => (x + amt, y + aim * amt, aim)
-            }
-        }
-    )
-    Js.log("Part 2: " ++ Int.toString(x * y))
+  let (x, y, _) = List.reduce(inputs, (0, 0, 0), ((x, y, aim), (dir, amt)) => {
+    switch dir {
+    | Up => (x, y, aim - amt)
+    | Down => (x, y, aim + amt)
+    | Forward => (x + amt, y + aim * amt, aim)
+    }
+  })
+  Js.log("Part 2: " ++ Int.toString(x * y))
 }
 
 let data = [
