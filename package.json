@@ -1,0 +1,9 @@
+{
+    "devDependencies": {
+      "rescript": "*"
+    },
+    "scripts": {
+      "re:build": "rescript",
+      "re:start": "rescript build -w"
+    }
+}
