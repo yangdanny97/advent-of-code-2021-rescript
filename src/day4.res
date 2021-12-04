@@ -1,10 +1,5 @@
 open Belt
 
-module IntCmp = Id.MakeComparable({
-  type t = int
-  let cmp = (a, b) => Pervasives.compare(a, b)
-})
-
 type box = {
   row: int,
   col: int,
@@ -14,7 +9,7 @@ type box = {
 type board = {
   // number => info mapping
   nums: Map.Int.t<box>,
-  // row/col => num of rem unmarked square
+  // row/col => num of rem unmarked squares
   rows: Map.Int.t<int>,
   cols: Map.Int.t<int>,
 }
