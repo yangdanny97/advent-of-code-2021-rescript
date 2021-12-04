@@ -44,14 +44,14 @@ let processNum = (board, num) => {
   // O(1) win condition check
   switch foundNum {
   | Some(n) => {
-      let rowVal = Map.Int.getExn(board.rows, n.row)
-      let colVal = Map.Int.getExn(board.cols, n.col)
+      let rowVal = Map.Int.getExn(board.rows, n.row) - 1
+      let colVal = Map.Int.getExn(board.cols, n.col) - 1
       let newBoard = {
         nums: Map.Int.set(board.nums, num, {...n, marked: true}),
-        rows: Map.Int.set(board.rows, n.row, rowVal - 1),
-        cols: Map.Int.set(board.cols, n.col, colVal - 1),
+        rows: Map.Int.set(board.rows, n.row, rowVal),
+        cols: Map.Int.set(board.cols, n.col, colVal),
       }
-      (rowVal == 1 || colVal == 1, newBoard)
+      (rowVal == 0 || colVal == 0, newBoard)
     }
   | None => (false, board)
   }
@@ -109,10 +109,10 @@ let part2 = (nums, boards) => {
             let (won, newBoard) = processNum(board, num)
             if won {
               // remove boards from play as they win
-              if rem.contents == 1 {
+              rem := rem.contents - 1
+              if rem.contents == 0 {
                 Js.log("Part 2: " ++ Js.Int.toString(calculateScore(newBoard, num)))
               }
-              rem := rem.contents - 1
               acc
             } else {
                 list{newBoard, ...acc}
