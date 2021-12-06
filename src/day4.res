@@ -82,7 +82,7 @@ let part1 = (nums, boards) => {
           } else {
             let (won, newBoard) = processNum(board, num)
             if won {
-              Js.log("Part 1: " ++ Js.Int.toString(calculateScore(newBoard, num)))
+              Js.log2("Part 1:", calculateScore(newBoard, num))
               hasWon := true
             }
             list{newBoard, ...acc}
@@ -111,7 +111,7 @@ let part2 = (nums, boards) => {
               // remove boards from play as they win
               rem := rem.contents - 1
               if rem.contents == 0 {
-                Js.log("Part 2: " ++ Js.Int.toString(calculateScore(newBoard, num)))
+                Js.log2("Part 2:", calculateScore(newBoard, num))
               }
               acc
             } else {

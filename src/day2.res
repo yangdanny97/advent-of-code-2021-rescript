@@ -13,7 +13,7 @@ let part1 = inputs => {
     | Forward => (x + amt, y)
     }
   })
-  Js.log("Part 1: " ++ Int.toString(x * y))
+  Js.log2("Part 1:", x * y)
 }
 
 let part2 = inputs => {
@@ -24,7 +24,7 @@ let part2 = inputs => {
     | Forward => (x + amt, y + aim * amt, aim)
     }
   })
-  Js.log("Part 2: " ++ Int.toString(x * y))
+  Js.log2("Part 2:", x * y)
 }
 
 let data = [

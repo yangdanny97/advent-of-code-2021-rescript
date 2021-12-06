@@ -8,7 +8,7 @@ let part1 = inputs => {
       (inc, x)
     }
   })
-  Js.log("Part 1: " ++ Int.toString(increases))
+  Js.log2("Part 1:", increases)
 }
 
 let part2 = inputs => {
@@ -22,7 +22,7 @@ let part2 = inputs => {
           (snd, thd, x, inc)
         }
       })
-      Js.log("Part 2: " ++ Int.toString(increases))
+      Js.log2("Part 2:", increases)
     }
   | _ => ()
   }

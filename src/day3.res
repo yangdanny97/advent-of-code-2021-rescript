@@ -37,7 +37,7 @@ let part1 = inputs => {
     ->List.toArray
     ->Js.String.concatMany("")
     ->binToDec
-  Js.log("Part 1: " ++ Int.toString(gamma * epsilon))
+  Js.log2("Part 1:", gamma * epsilon)
 }
 
 let part2 = inputs => {
@@ -69,7 +69,7 @@ let part2 = inputs => {
     })
     ->List.headExn
     ->binToDec
-  Js.log("Part 2: " ++ Int.toString(oxygen * carbon))
+  Js.log2("Part 2:", oxygen * carbon)
 }
 
 let data = [

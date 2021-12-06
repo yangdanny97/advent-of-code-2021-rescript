@@ -33,7 +33,7 @@ let part1 = inputs => {
       count
     }
   })
-  Js.log("Part 1: " ++ Js.Int.toString(intersections))
+  Js.log2("Part 1:", intersections)
 }
 
 // helper function to calculate current coord based on start, end, offset
@@ -67,7 +67,7 @@ let part2 = inputs => {
       count
     }
   })
-  Js.log("Part 2: " ++ Js.Int.toString(intersections))
+  Js.log2("Part 2:", intersections)
 }
 
 let inputs = [
