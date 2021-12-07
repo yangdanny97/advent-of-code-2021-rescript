@@ -4,7 +4,7 @@ let part1Cost = (start, end) => {
   Js.Math.abs_int(start - end)
 }
 
-// sum of geometric series
+// sum of arithmetic series
 let part2Cost = (start, end) => {
   let diff = Js.Math.abs_int(start - end) 
   diff * (diff + 1) / 2
