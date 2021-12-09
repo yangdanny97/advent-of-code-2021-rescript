@@ -39,7 +39,7 @@ let createBoard = (input: array<array<int>>) => {
 // inputs: board state, number
 // outputs: new board state, whether or not the board completed a row/col from this move
 let processNum = (board, num) => {
-  // find number, mark board as side effect
+  // find number
   let foundNum = Map.Int.get(board.nums, num)
   // O(1) win condition check
   switch foundNum {
