@@ -4,7 +4,7 @@
 
 Some fun/practice with ReScript. The solutions are mostly in a functional style using immutable data structures where it makes sense.
 
-The code file for each day also contains the example input provided on the AOC website, and running the file for a particular day will print the answers to part 1 and part 2 in your console. 
+The code file for each day also contains the example input provided on the AOC website, and running the file for a particular day will print the answers to part 1 and part 2 in your console. The entry points for each part are functions named `part1` and `part2`. 
 
 Inputs are mostly represented as array literals because 1) I'm not interested in parsing the raw input text and 2) literals for large lists compile to something nasty, so using an array literal and calling `List.fromArray` makes the most sense.
 
