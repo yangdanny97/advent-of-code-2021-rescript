@@ -78,11 +78,12 @@ let createMapping = input => {
 }
 
 let part2 = inputs => {
-  let sum = List.reduce(inputs,  0, (sum, (all, nums)) => {
+  let sum = List.reduce(inputs, 0, (sum, (all, nums)) => {
     // lookup for set of characters -> integer
     let mapping = createMapping(all)
     // convert second part of input into a 4 digit number
-    let num = digitsToSets(nums)
+    let num =
+      digitsToSets(nums)
       ->List.map(s => List.getAssoc(mapping, s, (a, b) => Set.String.eq(a, b))->Option.getExn)
       ->List.reduce(0, (acc, x) => acc * 10 + x)
     sum + num

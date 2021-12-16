@@ -115,7 +115,7 @@ let part2 = (nums, boards) => {
               }
               acc
             } else {
-                list{newBoard, ...acc}
+              list{newBoard, ...acc}
             }
           }
         })

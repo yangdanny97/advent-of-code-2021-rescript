@@ -27,14 +27,7 @@ let part2 = inputs => {
   Js.log2("Part 2:", x * y)
 }
 
-let data = [
-    (Forward, 5),
-    (Down, 5),
-    (Forward, 8),
-    (Up, 3),
-    (Down, 8),
-    (Forward, 2)
-]
+let data = [(Forward, 5), (Down, 5), (Forward, 8), (Up, 3), (Down, 8), (Forward, 2)]
 
 let inputs = List.fromArray(data)
 

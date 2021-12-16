@@ -47,7 +47,8 @@ let validate = (input, scoreFn) => {
     } else {
       // close brackets validate against stack
       switch acc {
-      | list{hd, ...tl} => if hd == x {
+      | list{hd, ...tl} =>
+        if hd == x {
           (0.0, tl)
         } else {
           (scoreFn(x), list{})

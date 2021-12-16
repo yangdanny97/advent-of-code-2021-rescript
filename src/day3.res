@@ -6,7 +6,7 @@ let binToDec = bin => {
   List.reduce(iter, 0, (acc, i) => {
     if Js.String.charAt(bits - i - 1, bin) === "0" {
       acc
-    } else { 
+    } else {
       acc + Int.fromFloat(2. ** Int.toFloat(i))
     }
   })

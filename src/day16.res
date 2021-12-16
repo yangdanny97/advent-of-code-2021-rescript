@@ -34,8 +34,8 @@ let binToDec = bin => {
   List.reduce(iter, 0., (acc, i) => {
     if Js.String.charAt(bits - i - 1, bin) === "0" {
       acc
-    } else { 
-      acc +. (2. ** Int.toFloat(i))
+    } else {
+      acc +. 2. ** Int.toFloat(i)
     }
   })
 }
@@ -162,21 +162,21 @@ and handleOperator2 = (typeid, packet, cursor) => {
   // order matters for comparators so we fix the order here
   let subpackets = List.reverse(subpackets)
   let val = if typeid == 0. {
-      List.reduce(subpackets, 0., (acc, x) => acc +. x)
+    List.reduce(subpackets, 0., (acc, x) => acc +. x)
   } else if typeid == 1. {
-      List.reduce(subpackets, 1., (acc, x) => acc *. x)
+    List.reduce(subpackets, 1., (acc, x) => acc *. x)
   } else if typeid == 2. {
-      List.reduce(subpackets, List.headExn(subpackets), (acc, x) => min(acc, x))
+    List.reduce(subpackets, List.headExn(subpackets), (acc, x) => min(acc, x))
   } else if typeid == 3. {
-      List.reduce(subpackets, List.headExn(subpackets), (acc, x) => max(acc, x))
+    List.reduce(subpackets, List.headExn(subpackets), (acc, x) => max(acc, x))
   } else if typeid == 5. {
-      (List.getExn(subpackets, 0) > List.getExn(subpackets, 1)) ? 1. : 0.
+    List.getExn(subpackets, 0) > List.getExn(subpackets, 1) ? 1. : 0.
   } else if typeid == 6. {
-      (List.getExn(subpackets, 0) < List.getExn(subpackets, 1)) ? 1. : 0.
+    List.getExn(subpackets, 0) < List.getExn(subpackets, 1) ? 1. : 0.
   } else if typeid == 7. {
-      (List.getExn(subpackets, 0) == List.getExn(subpackets, 1)) ? 1. : 0.
+    List.getExn(subpackets, 0) == List.getExn(subpackets, 1) ? 1. : 0.
   } else {
-      raise(Invariant("invalid typeid"))
+    raise(Invariant("invalid typeid"))
   }
   (val, cursor)
 }

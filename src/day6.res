@@ -1,7 +1,7 @@
 open Belt
 
 let inc = (map, k, n) => {
-    Map.Int.set(map, k, Map.Int.getWithDefault(map, k, 0.0) +. n)
+  Map.Int.set(map, k, Map.Int.getWithDefault(map, k, 0.0) +. n)
 }
 
 let simulate = (inputs, nDays) => {
@@ -15,7 +15,7 @@ let simulate = (inputs, nDays) => {
       if k == 0 {
         inc(acc, 6, num)->inc(8, num)
       } else {
-        inc(acc, k-1, num)
+        inc(acc, k - 1, num)
       }
     })
   })
@@ -27,8 +27,6 @@ let part1 = inputs => {
   let count = simulate(inputs, 80)
   Js.log2("Part 1:", count)
 }
-
-
 
 let part2 = inputs => {
   let count = simulate(inputs, 256)

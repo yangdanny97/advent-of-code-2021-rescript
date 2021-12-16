@@ -6,7 +6,7 @@ let part1Cost = (start, end) => {
 
 // sum of arithmetic series
 let part2Cost = (start, end) => {
-  let diff = Js.Math.abs_int(start - end) 
+  let diff = Js.Math.abs_int(start - end)
   diff * (diff + 1) / 2
 }
 
@@ -19,7 +19,7 @@ let getCost = (positions, position, costFn) => {
 // calculate minimum cost for all crabs to move to any position given a cost function
 let minCost = (input, costFn) => {
   let nCrabs = List.length(input)
-  // build a map to calculate the cost for all 
+  // build a map to calculate the cost for all
   // crabs at a position simultaneously
   let positions = List.reduce(input, Map.Int.empty, (acc, x) => {
     Map.Int.set(acc, x, Map.Int.getWithDefault(acc, x, 0) + 1)
