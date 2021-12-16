@@ -1,9 +1,7 @@
 open Belt
 
-// number of bits in each element of input
-let bits = 5
-
 let binToDec = bin => {
+  let bits = Js.String.length(bin)
   let iter = List.makeBy(bits, i => i)
   List.reduce(iter, 0, (acc, i) => {
     if Js.String.charAt(bits - i - 1, bin) === "0" {
@@ -26,6 +24,7 @@ let countBits = (inputs, n) => {
 }
 
 let part1 = inputs => {
+  let bits = List.headExn(inputs)->Js.String.length
   let counts = List.makeBy(bits, i => i)->List.map(i => countBits(inputs, i))
   let gamma =
     List.map(counts, ((zero, one)) => zero > one ? "0" : "1")
@@ -41,6 +40,7 @@ let part1 = inputs => {
 }
 
 let part2 = inputs => {
+  let bits = List.headExn(inputs)->Js.String.length
   let oxygen =
     List.makeBy(bits, i => i)
     ->List.reduce(inputs, (acc, idx) => {
