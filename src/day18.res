@@ -7,6 +7,13 @@ type rec tree =
 
 exception Invariant(string)
 
+let getParentRef = node => {
+  switch node {
+  | Node(_, _, p)
+  | Leaf(_, p) => p
+  }
+}
+
 let parseInput = input => {
   let rec helper = (input, cursor) => {
     let c = Js.String.get(input, cursor)
@@ -14,16 +21,8 @@ let parseInput = input => {
       let (left, cursor) = helper(input, cursor + 1)
       let (right, cursor) = helper(input, cursor + 1)
       let node = Node(ref(left), ref(right), ref(None))
-      switch left {
-      | Node(_, _, p)
-      | Leaf(_, p) =>
-        p.contents = Some(node)
-      }
-      switch right {
-      | Node(_, _, p)
-      | Leaf(_, p) =>
-        p.contents = Some(node)
-      }
+      getParentRef(left) := Some(node)
+      getParentRef(right) := Some(node)
       (node, cursor + 1)
     } else if c === "]" || c === "," {
       raise(Invariant("these should be skipped"))
@@ -49,13 +48,6 @@ let copy = tree => {
 }
 
 // tree traversal utilities
-
-let getParentRef = node => {
-  switch node {
-  | Node(_, _, p)
-  | Leaf(_, p) => p
-  }
-}
 
 let rec findSuccNum = node => {
   let rec getLnumChild = node => {
