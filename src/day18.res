@@ -48,8 +48,8 @@ let rec printTree = node => {
 }
 
 let copy = tree => {
-    // dirty but effective way of making a deep copy
-    tree->printTree->parseInput
+  // dirty but effective way of making a deep copy
+  tree->printTree->parseInput
 }
 
 // tree traversal utilities
@@ -61,38 +61,32 @@ let getParentRef = node => {
   }
 }
 
-let findSuccNum = node => {
+let rec findSuccNum = node => {
   let rec getLnumChild = node => {
     switch node {
     | Node(l, _, _) => getLnumChild(l.contents)
     | Leaf(_, _) => node
     }
   }
-  let rec helper = node => {
-    switch getParentRef(node).contents {
-    | Some(Node(l, r, _)) if l.contents === node => Some(getLnumChild(r.contents))
-    | Some(Node(_, _, _) as n) => helper(n)
-    | _ => None
-    }
+  switch getParentRef(node).contents {
+  | Some(Node(l, r, _)) if l.contents === node => Some(getLnumChild(r.contents))
+  | Some(Node(_, _, _) as n) => findSuccNum(n)
+  | _ => None
   }
-  helper(node)
 }
 
-let findPredNum = node => {
+let rec findPredNum = node => {
   let rec getRnumChild = node => {
     switch node {
     | Node(_, r, _) => getRnumChild(r.contents)
     | Leaf(_, _) => node
     }
   }
-  let rec helper = node => {
-    switch getParentRef(node).contents {
-    | Some(Node(l, r, _)) if r.contents === node => Some(getRnumChild(l.contents))
-    | Some(Node(_, _, _) as n) => helper(n)
-    | _ => None
-    }
+  switch getParentRef(node).contents {
+  | Some(Node(l, r, _)) if r.contents === node => Some(getRnumChild(l.contents))
+  | Some(Node(_, _, _) as n) => findPredNum(n)
+  | _ => None
   }
-  helper(node)
 }
 
 let updateParent = (parent, original, new) => {
@@ -252,34 +246,34 @@ let part1 = input => {
 }
 
 let part2 = input => {
-    let nums = List.fromArray(input)->List.map(i => parseInput(i))
-    let rec getMax = (nums, currmax) => {
-        switch nums {
-            |list{} => currmax
-            |list{hd, ...tl} => {
-                let newmax = List.reduce(tl, currmax, (acc, x) => {
-                    let a = add(copy(hd), copy(x))->magnitude
-                    let b = add(copy(x), copy(hd))->magnitude
-                    max(a, max(b, acc))
-                })
-                getMax(tl, newmax)
-            }
-        }
+  let nums = List.fromArray(input)->List.map(i => parseInput(i))
+  let rec getMax = (nums, currmax) => {
+    switch nums {
+    | list{} => currmax
+    | list{hd, ...tl} => {
+        let newmax = List.reduce(tl, currmax, (acc, x) => {
+          let a = add(copy(hd), copy(x))->magnitude
+          let b = add(copy(x), copy(hd))->magnitude
+          max(a, max(b, acc))
+        })
+        getMax(tl, newmax)
+      }
     }
-    Js.log2("Part 2:", getMax(nums, 0))
+  }
+  Js.log2("Part 2:", getMax(nums, 0))
 }
 
 let input = [
-"[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]",
-"[[[5,[2,8]],4],[5,[[9,9],0]]]",
-"[6,[[[6,2],[5,6]],[[7,6],[4,7]]]]",
-"[[[6,[0,7]],[0,9]],[4,[9,[9,0]]]]",
-"[[[7,[6,4]],[3,[1,3]]],[[[5,5],1],9]]",
-"[[6,[[7,3],[3,2]]],[[[3,8],[5,7]],4]]",
-"[[[[5,4],[7,7]],8],[[8,3],8]]",
-"[[9,3],[[9,9],[6,[4,9]]]]",
-"[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]",
-"[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]"
+  "[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]",
+  "[[[5,[2,8]],4],[5,[[9,9],0]]]",
+  "[6,[[[6,2],[5,6]],[[7,6],[4,7]]]]",
+  "[[[6,[0,7]],[0,9]],[4,[9,[9,0]]]]",
+  "[[[7,[6,4]],[3,[1,3]]],[[[5,5],1],9]]",
+  "[[6,[[7,3],[3,2]]],[[[3,8],[5,7]],4]]",
+  "[[[[5,4],[7,7]],8],[[8,3],8]]",
+  "[[9,3],[[9,9],[6,[4,9]]]]",
+  "[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]",
+  "[[[[5,2],5],[8,[3,7]]],[[5,[7,5]],[4,4]]]",
 ]
 
 part1(input)
