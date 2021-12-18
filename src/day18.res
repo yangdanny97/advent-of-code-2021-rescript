@@ -1,9 +1,5 @@
 open Belt
 
-type rec snailnum =
-  | Pair(snailnum, snailnum)
-  | Num(int)
-
 // need mutability here for pointer manipulation
 type rec tree =
   | Node(ref<tree>, ref<tree>, ref<option<tree>>)
