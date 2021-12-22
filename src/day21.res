@@ -44,8 +44,10 @@ let part2 = (p1, p2) => {
   let (p1win, p2win) = (ref(0.0), ref(0.0))
   // current turn number
   let turn = ref(0)
+  // keep track of game state => number of universes
   let init = Map.make(~id=module(StateCmp))->Map.set((p1, 0, p2, 0), 1.0)
   let states = ref(init)
+  // stop when there are no remaining un-won states
   while Map.size(states.contents) > 0 {
     turn := turn.contents + 1
     let newMap = Map.reduce(states.contents, Map.make(~id=module(StateCmp)), (
@@ -63,6 +65,7 @@ let part2 = (p1, p2) => {
           let newPos = p == 0 ? 10 : p
           (p1p, p1s, newPos, p2s + newPos)
         }
+        // omit winning states from next iteration
         if p1s' >= 21 {
           p1win := p1win.contents +. currCount *. count
           acc
