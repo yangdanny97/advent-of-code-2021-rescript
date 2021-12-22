@@ -64,13 +64,13 @@ let part2 = (p1, p2) => {
           (p1p, p1s, newPos, p2s + newPos)
         }
         if p1s' >= 21 {
-            p1win := p1win.contents +. currCount *. count
-            acc
+          p1win := p1win.contents +. currCount *. count
+          acc
         } else if p2s' >= 21 {
-            p2win := p2win.contents +. currCount *. count
-            acc
+          p2win := p2win.contents +. currCount *. count
+          acc
         } else {
-            Map.set(acc, newState, Map.getWithDefault(acc, newState, 0.0) +. currCount *. count)
+          Map.set(acc, newState, Map.getWithDefault(acc, newState, 0.0) +. currCount *. count)
         }
       })
     })
