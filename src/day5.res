@@ -2,10 +2,7 @@ open Belt
 
 module CoordCmp = Id.MakeComparable({
   type t = (int, int)
-  let cmp = ((x1, y1), (x2, y2)) => {
-    let fst = Pervasives.compare(x1, x2)
-    fst == 0 ? Pervasives.compare(y1, y2) : fst
-  }
+  let cmp = (a, b) => Pervasives.compare(a, b)
 })
 
 let part1 = inputs => {
